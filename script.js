@@ -7,7 +7,7 @@ const ctx = canvas.getContext('2d');
 //define radius, center
 const centerX = canvas.getAttribute("height") / 2;
 const centerY = canvas.getAttribute("width") / 2;
-const radius = 150;
+const radius = 180;
 
 //draw circle
 function drawCircle(x, y, r, width, color) {
@@ -18,8 +18,8 @@ function drawCircle(x, y, r, width, color) {
     ctx.stroke();
 }
 
-// drawCircle(centerX, centerY, radius, 1, "black");
-drawCircle(0, 100, 10, 1, "black");
+drawCircle(centerX, centerY, radius, 1, "black");
+// drawCircle(10, 100, 0.5, 1, "black");
 
 //function to convert from Polar to Cartesian Coordinate
 
@@ -48,8 +48,6 @@ function drawSecondHand(deg = 0) {
     ctx.stroke();
 }
 
-drawSecondHand(0);
-
 //draw minute-hand
 function drawMinuteHand() {
     const minuteHandLength = radius * 0.7;
@@ -72,10 +70,26 @@ function drawHourHand() {
     ctx.stroke();
 }
 
-//animate second-hand
-// let start;
-// function animateSecond(timeStamp) {
+//function to calculate second-hand postion in degree
+function secondHandAngle(time = 0) {
+    return (time * 360 / 60)
+}
 
-//     requestAnimationFrame(animateSecond);
-// }
-// requestAnimationFrame(animateSecond);
+//animate second-hand
+let last = 0, elapsedTime = 0;
+function animateSecond(now) {
+    if (last == 0) {
+        drawSecondHand(0);
+    }
+    if (!last || (now - last) >= 1000) {
+        last = now;
+        elapsedTime += 1;
+        // console.log(elapsedTime);
+        const angle = secondHandAngle(elapsedTime);
+        // console.log(angle);
+        // ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawSecondHand(angle);
+    }
+    requestAnimationFrame(animateSecond);
+}
+requestAnimationFrame(animateSecond);
