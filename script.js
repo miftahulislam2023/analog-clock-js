@@ -17,29 +17,44 @@ ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
 ctx.stroke();
 
 //draw second-hand
-const secondHandLength = radius * 0.8;
-ctx.beginPath();
-ctx.moveTo(centerX, centerY);
-ctx.strokeStyle = 'blue';
-ctx.lineTo(centerX, (centerY - secondHandLength));
-ctx.stroke();
+function drawSecondHand(deg = 0) {
+    const secondHandLength = radius * 0.8;
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'blue';
+    ctx.lineTo(centerX, (centerY - secondHandLength));
+    ctx.stroke();
+}
 
 //draw minute-hand
-const minuteHandLength = radius * 0.7;
-ctx.beginPath();
-ctx.moveTo(centerX, centerY);
-ctx.strokeStyle = 'red';
-ctx.lineWidth = 3;
-ctx.lineTo(centerX, (centerY - minuteHandLength));
-ctx.stroke();
+function drawMinuteHand() {
+    const minuteHandLength = radius * 0.7;
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 3;
+    ctx.lineTo(centerX, (centerY - minuteHandLength));
+    ctx.stroke();
+}
 
 //draw hour-hand
-const hourHandLength = radius * 0.6;
-ctx.beginPath();
-ctx.moveTo(centerX, centerY);
-ctx.strokeStyle = 'black';
-ctx.lineWidth = 5;
-ctx.lineTo(centerX, (centerY - hourHandLength));
-ctx.stroke();
+function drawHourHand() {
+    const hourHandLength = radius * 0.6;
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 5;
+    ctx.lineTo(centerX, (centerY - hourHandLength));
+    ctx.stroke();
+}
 
+//animate second-hand
+// let start;
+// drawSecondHand();
+// function animateSecond(timeStamp) {
 
+//     requestAnimationFrame(animateSecond);
+// }
+
+// requestAnimationFrame(animateSecond);
